@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Срочный ремонт сайтов за 60 минут</title>
+    <title>Срочный ремонт сайтов за 60 минут | Починить форму, SSL, мобильную версию</title>
+    <meta name="description"
+        content="Срочно чиним формы на сайте, слетевшую мобильную верстку, ошибки SSL и медленную загрузку за 1 час. Гарантия результата 100%. Оплата после диагностики.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -16,6 +18,27 @@
             text-shadow: 0 0 20px rgba(20, 184, 166, 0.6);
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Сколько стоит ремонт сайта?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Стандартный фикс стоит 3000 рублей, срочный (вне очереди) - 5000 рублей."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Что если проблема не будет решена?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Если мы не найдем и не решим проблему за 60 минут после диагностики, мы возвращаем предоплату."
+        }
+      }]
+    }
+    </script>
 </head>
 
 <body class="bg-gray-900 text-gray-100 min-h-screen selection:bg-teal-500 selection:text-white">
@@ -31,6 +54,15 @@
             </h1>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto">Форма не отправляет письма? Кривая мобильная версия?
                 "Небезопасное" соединение? Исправлю баги, пока вы теряете клиентов.</p>
+            <div
+                class="mt-8 inline-flex items-center space-x-2 text-sm text-teal-400 bg-gray-800/80 px-5 py-3 rounded-xl border border-teal-500/20 shadow-lg relative group overflow-hidden">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                    </path>
+                </svg>
+                <span class="font-medium">Без предоплаты за диагностику. 100% гарантия.</span>
+            </div>
         </header>
 
         <!-- Блок "Что чиню" -->
@@ -100,8 +132,8 @@
                 </div>
 
                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Ваш контакт (Telegram / Номер)</label>
-                    <input type="text" id="contact" required placeholder="@username или +7..."
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Ваш контакт для связи</label>
+                    <input type="text" id="contact" required placeholder="Ник в Telegram или номер WhatsApp"
                         class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500">
                 </div>
 
@@ -109,6 +141,14 @@
                     class="w-full bg-teal-500 hover:bg-teal-400 text-gray-900 font-bold text-lg py-4 px-6 rounded-lg transition-colors neon-border">
                     Починить мой сайт
                 </button>
+                <div class="text-center mt-4 text-xs text-gray-500 flex items-center justify-center space-x-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                    <span>Отвечу за 10 минут. Данные в безопасности.</span>
+                </div>
             </form>
         </div>
 

@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Сайты, лендинги и ИИ-автоматизации под ключ — STOIC.STUDIO</title>
+    <meta name="description"
+        content="Разрабатываю сайты, лендинги, мобильные приложения и ИИ-автоматизации под ключ. От брифа до запуска — 7-14 дней. Код, который зарабатывает.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Сайты и ИИ-автоматизации, которые приносят деньги">
+    <meta property="og:description" content="Лендинг за 7 дней. Сайт за 14. ИИ-ассистент, который закрывает клиента пока вы спите.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #0b0a14;
+            --bg-2: #14102a;
+            --ink: #f5f1ff;
+            --muted: #9a92c4;
+            --accent: #ff6fd8;
+            --accent-2: #9d7bff;
+            --accent-3: #5ee0ff;
+            --marble: #efe9f7;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html,
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            cursor: none;
+        }
+
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .25s ease, height .25s ease, background .25s ease;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 111, 216, .4);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform .12s linear, width .3s ease, height .3s ease, opacity .3s ease;
+        }
+
+        @media (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor,
+            .cursor-ring {
+                display: none;
+            }
+        }
+
+        /* Grain */
+        .grain::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: .18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Glow blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .55;
+            pointer-events: none;
+        }
+
+        /* Gradient text */
+        .grad-text {
+            background: linear-gradient(90deg, #ff6fd8, #9d7bff 40%, #5ee0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .marble-text {
+            background: linear-gradient(180deg, #ffffff 0%, #d7c9ff 70%, #8c7eb6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 3D scene fixed behind hero */
+        #three-scene {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .section {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Marble block */
+        .marble-card {
+            position: relative;
+            background:
+                radial-gradient(120% 80% at 20% 10%, rgba(255, 255, 255, .12) 0%, transparent 50%),
+                radial-gradient(120% 80% at 80% 90%, rgba(157, 123, 255, .18) 0%, transparent 55%),
+                linear-gradient(180deg, #1a1533 0%, #120e26 100%);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .marble-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23m)'/%3E%3C/svg%3E");
+            mix-blend-mode: screen;
+            opacity: .5;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .04);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .chip .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: .55
+            }
+        }
+
+        /* Scroll-pin caption */
+        .pin-wrap {
+            height: 420vh;
+        }
+
+        .pin-stage {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ticker */
+        .ticker {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: tick 40s linear infinite;
+            gap: 64px;
+            padding-right: 64px;
+        }
+
+        @keyframes tick {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .split-char {
+            display: inline-block;
+        }
+
+        /* Button */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 30px;
+            border-radius: 999px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            background: linear-gradient(120deg, #ff6fd8, #9d7bff 60%, #5ee0ff);
+            color: #0b0a14;
+            overflow: hidden;
+            isolation: isolate;
+            transition: transform .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, #5ee0ff, #9d7bff 60%, #ff6fd8);
+            opacity: 0;
+            transition: opacity .35s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn-ghost {
+            padding: 16px 26px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .03);
+            color: var(--ink);
+            font-weight: 600;
+            transition: border-color .3s ease, background .3s ease;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            background: rgba(255, 111, 216, .08);
+        }
+
+        /* Steps line */
+        .step-line {
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(157, 123, 255, .4), transparent);
+        }
+
+        .step-dot {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #2a1e52, #0b0a14);
+            border: 1px solid rgba(157, 123, 255, .4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--marble);
+            box-shadow: 0 0 30px rgba(157, 123, 255, .35);
+            flex-shrink: 0;
+        }
+
+        /* Horizontal cards */
+        .h-track {
+            display: flex;
+            gap: 24px;
+            padding: 0 6vw;
+        }
+
+        .case-card {
+            flex: 0 0 520px;
+            height: 580px;
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .case-card .bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .case-card .cnt {
+            position: relative;
+            z-index: 2;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .case-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(11, 10, 20, 0) 20%, rgba(11, 10, 20, .9) 100%);
+        }
+
+        /* Pricing */
+        .price-card {
+            position: relative;
+            padding: 40px 32px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(180deg, rgba(26, 21, 51, .7), rgba(18, 14, 38, .7));
+            backdrop-filter: blur(12px);
+        }
+
+        .price-card.featured {
+            border: 1px solid transparent;
+            background:
+                linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
+                linear-gradient(135deg, #ff6fd8, #9d7bff, #5ee0ff) border-box;
+            box-shadow: 0 20px 80px -20px rgba(157, 123, 255, .6);
+        }
+
+        /* Form */
+        .input {
+            width: 100%;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            color: var(--ink);
+            font-family: inherit;
+            transition: border-color .25s ease, background .25s ease;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 111, 216, .04);
+        }
+
+        .input::placeholder {
+            color: rgba(154, 146, 196, .6);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 28px 0;
+            cursor: pointer;
+        }
+
+        .faq-item[open] .faq-plus {
+            transform: rotate(45deg);
+        }
+
+        .faq-plus {
+            transition: transform .3s ease;
+        }
+
+        /* Marquee scroll sections */
+        .big-scroll-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(60px, 18vw, 320px);
+            line-height: .85;
+            letter-spacing: -.04em;
+            white-space: nowrap;
+        }
+
+        /* Stat counter */
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(80px, 14vw, 220px);
+            line-height: 1;
+            letter-spacing: -.04em;
+        }
+
+        /* Floating shapes placeholder */
+        .float {
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-14px)
+            }
+        }
+
+        /* Terminal line */
+        .terminal {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 13px;
+            color: #5ee0ff;
+            letter-spacing: .02em;
+        }
+
+        .terminal .caret {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #5ee0ff;
+            margin-left: 3px;
+            vertical-align: -2px;
+            animation: caret 1s steps(1) infinite;
+        }
+
+        @keyframes caret {
+
+            0%,
+            50% {
+                opacity: 1
+            }
+
+            51%,
+            100% {
+                opacity: 0
+            }
+        }
+
+        /* Cursor text mode (on case hover) */
+        .cursor-ring.has-text {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, #ff6fd8, #5ee0ff);
+            border-color: transparent;
+        }
+
+        .cursor-ring .cursor-label {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #0b0a14;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .cursor-ring.has-text .cursor-label {
+            display: flex;
+        }
+
+        /* Magnetic */
+        .magnetic {
+            display: inline-flex;
+            will-change: transform;
+        }
+
+        /* Split text reveal */
+        .split-char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(110%) rotate(8deg);
+        }
+
+        /* Raccoon follower */
+        #raccoon {
+            position: fixed;
+            bottom: 12px;
+            left: 0;
+            width: 90px;
+            height: 90px;
+            pointer-events: none;
+            z-index: 40;
+            transform: translateX(0);
+            transition: transform .15s ease-out;
+            filter: drop-shadow(0 10px 30px rgba(94, 224, 255, .35));
+        }
+
+        #raccoon .raccoon-img {
+            width: 100%;
+            height: 100%;
+            background-image: url("raccoon.png");
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            animation: raccoon-run 0.5s steps(1) infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes raccoon-run {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg) scaleY(1);
+            }
+
+            50% {
+                transform: translateY(-6px) rotate(2deg) scaleY(1.03);
+            }
+        }
+
+        #raccoon.idle .raccoon-img {
+            animation: raccoon-idle 2.4s ease-in-out infinite;
+        }
+
+        @keyframes raccoon-idle {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-3px)
+            }
+        }
+
+        #raccoon .bubble {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: #14102a;
+            border: 1px solid rgba(94, 224, 255, .4);
+            color: #f5f1ff;
+            padding: 6px 12px;
+            border-radius: 10px;
+            white-space: nowrap;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+        }
+
+        #raccoon.talking .bubble {
+            opacity: 1;
+        }
+
+        /* Hide scrollbar pure aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0a14;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ff6fd8, #5ee0ff);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="grain">
+    <div class="cursor-ring"><span class="cursor-label">View →</span></div>
+    <div class="cursor"></div>
+
+    <!-- Raccoon follower -->
+    <div id="raccoon" class="idle" aria-hidden="true">
+        <div class="bubble">Смотри — кейсы ↑</div>
+        <div class="raccoon-img"></div>
+    </div>
+
+    <!-- Fixed 3D scene -->
+    <div id="three-scene"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between backdrop-blur-md bg-[#0b0a14]/40 border-b border-white/5">
+        <a href="#" class="flex items-center gap-2 font-bold tracking-wider text-sm uppercase">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300"></span>
+            STOIC.TARGET
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-[var(--muted)]">
+            <a href="#philosophy" class="hover:text-white transition">Философия</a>
+            <a href="#process" class="hover:text-white transition">Процесс</a>
+            <a href="#cases" class="hover:text-white transition">Кейсы</a>
+            <a href="#pricing" class="hover:text-white transition">Тарифы</a>
+            <a href="#faq" class="hover:text-white transition">FAQ</a>
+        </div>
+        <a href="#lead" class="btn-ghost text-sm">Начать</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="section min-h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-28 pb-20 relative">
+        <div class="blob w-[600px] h-[600px] -left-40 top-20" style="background:#ff6fd8"></div>
+        <div class="blob w-[500px] h-[500px] right-0 bottom-0" style="background:#5ee0ff"></div>
+
+        <div class="relative max-w-6xl mx-auto w-full">
+            <div class="chip reveal mb-6"><span class="dot"></span> Студия разработки под ключ · сайты · ИИ · автоматизации</div>
+            <div class="terminal reveal mb-8" id="terminalLine">&gt;&nbsp;<span id="termText"></span><span class="caret"></span></div>
+            <h1 class="text-[clamp(48px,9vw,160px)] font-extrabold leading-[0.88] tracking-[-0.03em] mb-8" data-split>
+                Сайты, что<br>
+                <span class="serif font-normal marble-text">работают,</span><br>
+                <span class="grad-text">пока вы спите</span>
+            </h1>
+            <p class="reveal max-w-xl text-lg md:text-xl text-[var(--muted)] mb-10">
+                Разрабатываю лендинги, сайты, мобильные приложения и&nbsp;ИИ-автоматизации под&nbsp;ключ. От&nbsp;идеи до&nbsp;первой заявки&nbsp;— 7&nbsp;дней. Код, дизайн и&nbsp;маркетинг в&nbsp;одной голове.
+            </p>
+            <div class="reveal flex flex-wrap gap-4 items-center">
+                <a href="#lead" class="btn magnetic">
+                    Обсудить проект
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+                <a href="#cases" class="btn-ghost magnetic">Посмотреть работы</a>
+            </div>
+
+            <div class="reveal absolute right-0 bottom-0 hidden md:flex flex-col items-end gap-1 text-xs text-[var(--muted)] uppercase tracking-[.25em]">
+                <span>Scroll</span>
+                <div class="w-px h-16 bg-gradient-to-b from-[var(--accent)] to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="section py-6 border-y border-white/5 bg-[#0b0a14]/60 backdrop-blur">
+        <div class="ticker">
+            <div class="ticker-track serif text-3xl text-[var(--muted)]">
+                <span>· Лендинг за&nbsp;7&nbsp;дней</span>
+                <span>· Сайт за&nbsp;14&nbsp;дней</span>
+                <span>· ИИ-ассистенты&nbsp;24/7</span>
+                <span>· 142 проекта в&nbsp;бою</span>
+                <span>· Код, что&nbsp;зарабатывает</span>
+                <span>· Sine&nbsp;ira&nbsp;et&nbsp;studio</span>
+                <span>· Лендинг за&nbsp;7&nbsp;дней</span>
+                <span>· Сайт за&nbsp;14&nbsp;дней</span>
+                <span>· ИИ-ассистенты&nbsp;24/7</span>
+                <span>· 142 проекта в&nbsp;бою</span>
+                <span>· Код, что&nbsp;зарабатывает</span>
+                <span>· Sine&nbsp;ira&nbsp;et&nbsp;studio</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCROLL-TELL PROBLEM -->
+    <section class="section pin-wrap relative" id="problem">
+        <div class="pin-stage">
+            <div class="absolute inset-0 flex items-center justify-center px-6">
+                <div class="w-full max-w-6xl">
+                    <div class="flex items-center gap-4 mb-10 reveal">
+                        <span class="chip"><span class="dot"></span> 01 / Проблема</span>
+                    </div>
+
+                    <h2 id="problem-head" class="serif text-[clamp(48px,8vw,140px)] leading-[0.9] mb-12">
+                        Знакомая<br>
+                        <span class="marble-text">история?</span>
+                    </h2>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div data-pstep class="marble-card p-8 opacity-0">
+                            <div class="serif text-5xl text-[var(--accent)] mb-4">I.</div>
+                            <h3 class="text-xl font-bold mb-2">Сайт&nbsp;— как с&nbsp;2014</h3>
+                            <p class="text-[var(--muted)]">Трафик льёте, а&nbsp;конверсия&nbsp;0,3%. Заходят, видят тильду без&nbsp;души&nbsp;— и&nbsp;уходят.</p>
+                        </div>
+                        <div data-pstep class="marble-card p-8 opacity-0">
+                            <div class="serif text-5xl text-[var(--accent-2)] mb-4">II.</div>
+                            <h3 class="text-xl font-bold mb-2">Агентство пропало</h3>
+                            <p class="text-[var(--muted)]">Сдали MVP и&nbsp;ушли в&nbsp;туман. Мелкая правка&nbsp;— две недели и&nbsp;50&nbsp;тысяч.</p>
+                        </div>
+                        <div data-pstep class="marble-card p-8 opacity-0">
+                            <div class="serif text-5xl text-[var(--accent-3)] mb-4">III.</div>
+                            <h3 class="text-xl font-bold mb-2">Рутина ест команду</h3>
+                            <p class="text-[var(--muted)]">Менеджер по&nbsp;8&nbsp;часов руками копирует заявки в&nbsp;CRM. А&nbsp;могла&nbsp;бы&nbsp;— продавать.</p>
+                        </div>
+                    </div>
+
+                    <p data-pstep class="serif text-2xl md:text-4xl text-white/80 mt-16 max-w-3xl opacity-0">
+                        «Красивый сайт&nbsp;— это не&nbsp;услуга. Услуга&nbsp;— это <span class="grad-text not-italic font-bold">деньги в&nbsp;кассе</span>».
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIG TYPOGRAPHY SCROLL -->
+    <section class="section py-32 overflow-hidden">
+        <div id="big-text-wrap" class="big-scroll-text marble-text">
+            &nbsp;Memento&nbsp;·&nbsp;CPL&nbsp;·&nbsp;Ratio&nbsp;·&nbsp;Гипотеза&nbsp;·&nbsp;Disciplina
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="section py-32 px-6 md:px-12 relative">
+        <div class="blob w-[700px] h-[700px] -right-40 top-40" style="background:#9d7bff;opacity:.35"></div>
+
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <span class="chip"><span class="dot"></span> 02 / Принципы</span>
+            </div>
+
+            <h2 class="reveal text-[clamp(42px,7vw,120px)] font-extrabold leading-[0.9] mb-6">
+                Что делаю<br>
+                <span class="serif font-normal grad-text">под ключ.</span>
+            </h2>
+            <p class="reveal max-w-xl text-lg text-[var(--muted)] mb-16">
+                Четыре направления&nbsp;— и&nbsp;всё в&nbsp;одних руках. Никакой цепочки «дизайнер&nbsp;→ верстальщик&nbsp;→ программист&nbsp;→ недоразумение».
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="reveal marble-card p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="step-dot">I</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Лендинги &nbsp;—&nbsp; 7&nbsp;дней</h3>
+                            <p class="text-[var(--muted)] leading-relaxed">Продающая страница под&nbsp;рекламный трафик. Сильный оффер, CRO-структура, A/B&nbsp;верстка, интеграция с&nbsp;CRM и&nbsp;мессенджерами.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal marble-card p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="step-dot">II</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Сайты &nbsp;—&nbsp; 14&nbsp;дней</h3>
+                            <p class="text-[var(--muted)] leading-relaxed">Корпоративные, услуги, каталоги, e-com. Next.js&nbsp;/ Astro&nbsp;/ Tilda&nbsp;Zero-block. Пишу код, а&nbsp;не&nbsp;собираю из&nbsp;блоков.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal marble-card p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="step-dot">III</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Приложения и&nbsp;MVP</h3>
+                            <p class="text-[var(--muted)] leading-relaxed">Веб- и&nbsp;мобильные сервисы, личные кабинеты, дашборды. React, Next.js, Supabase, Firebase. От&nbsp;идеи до&nbsp;первых платных пользователей.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal marble-card p-10">
+                    <div class="flex items-start gap-6">
+                        <div class="step-dot">IV</div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">ИИ-автоматизации</h3>
+                            <p class="text-[var(--muted)] leading-relaxed">GPT-ассистенты в&nbsp;Telegram и&nbsp;на&nbsp;сайте, n8n-сценарии, авто-обработка заявок, генерация контента, RAG по&nbsp;вашей базе. Снимаю рутину с&nbsp;команды.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section py-32 px-6 md:px-12 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal">
+                    <div class="stat-num grad-text" data-count="142">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Проектов в&nbsp;ВК</div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-num marble-text" data-count="380">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Средний ROMI, %</div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-num grad-text" data-count="42">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Лид от, ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS (sticky column) -->
+    <section id="process" class="section py-32 px-6 md:px-12 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <span class="chip"><span class="dot"></span> 03 / Процесс</span>
+            </div>
+            <h2 class="reveal text-[clamp(42px,7vw,120px)] font-extrabold leading-[0.9] mb-6">
+                Как я <span class="serif font-normal grad-text">работаю</span><br>
+                над проектом.
+            </h2>
+            <p class="reveal max-w-xl text-lg text-[var(--muted)] mb-20">Шесть шагов от&nbsp;первого созвона до&nbsp;первой заявки. Никаких «завтра пришлём ТЗ на&nbsp;400&nbsp;страниц».</p>
+
+            <div class="grid md:grid-cols-[300px_1fr] gap-10">
+                <div class="md:sticky md:top-32 self-start">
+                    <div class="marble-card p-8">
+                        <div class="text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-3">Шаг</div>
+                        <div id="week-num" class="stat-num grad-text leading-none">1</div>
+                        <div id="week-title" class="text-xl font-bold mt-4">Бриф и&nbsp;цели</div>
+                        <div class="h-1 w-full bg-white/5 mt-6 rounded-full overflow-hidden">
+                            <div id="week-bar" class="h-full w-[16%] bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-300 transition-all"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-20">
+                    <div class="step-line"></div>
+
+                    <div class="process-step relative mb-16" data-week="1" data-title="Бриф и&nbsp;цели">
+                        <div class="step-dot absolute -left-20 top-0">I</div>
+                        <h3 class="text-2xl font-bold mb-3">Созвон&nbsp;— 40&nbsp;минут</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Не&nbsp;ТЗ на&nbsp;50&nbsp;листов, а&nbsp;разговор. Кто клиент, что&nbsp;продаём, откуда трафик, что&nbsp;считаем успехом. Сразу говорю «да»&nbsp;или&nbsp;«нет».</p>
+                    </div>
+
+                    <div class="process-step relative mb-16" data-week="2" data-title="Прототип">
+                        <div class="step-dot absolute -left-20 top-0">II</div>
+                        <h3 class="text-2xl font-bold mb-3">Структура и&nbsp;офферы</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Собираем wireframe по&nbsp;CRO-каркасу: оффер, дожим, соц.&nbsp;доказательства, CTA. Утверждаем логику&nbsp;— потом дизайн.</p>
+                    </div>
+
+                    <div class="process-step relative mb-16" data-week="3" data-title="Дизайн">
+                        <div class="step-dot absolute -left-20 top-0">III</div>
+                        <h3 class="text-2xl font-bold mb-3">Визуал без&nbsp;шаблонов</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Figma, анимации, 3D, иллюстрации под&nbsp;ваш бренд. Ни&nbsp;одного стокового «рукопожатия».</p>
+                    </div>
+
+                    <div class="process-step relative mb-16" data-week="4" data-title="Разработка">
+                        <div class="step-dot absolute -left-20 top-0">IV</div>
+                        <h3 class="text-2xl font-bold mb-3">Пишу код&nbsp;— сам</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Next.js&nbsp;/ Astro&nbsp;/ Vercel. Lighthouse 90+, SEO-разметка, адаптив, чистый код. Никаких «сделал на&nbsp;WordPress за&nbsp;2&nbsp;часа».</p>
+                    </div>
+
+                    <div class="process-step relative mb-16" data-week="5" data-title="Интеграции">
+                        <div class="step-dot absolute -left-20 top-0">V</div>
+                        <h3 class="text-2xl font-bold mb-3">CRM, боты, аналитика</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">amoCRM, Bitrix24, Telegram, WhatsApp, Яндекс.Метрика, UTM. ИИ-ассистент на&nbsp;сайт&nbsp;— опционально. Всё заявки падают туда, где&nbsp;вы их&nbsp;реально видите.</p>
+                    </div>
+
+                    <div class="process-step relative" data-week="6" data-title="Запуск и&nbsp;поддержка">
+                        <div class="step-dot absolute -left-20 top-0">VI</div>
+                        <h3 class="text-2xl font-bold mb-3">Релиз + 30 дней на связи</h3>
+                        <p class="text-[var(--muted)] leading-relaxed">Запустили, показали метрики, месяц на&nbsp;правки&nbsp;— бесплатно. Потом&nbsp;— абонентка или&nbsp;разовые задачи. Не&nbsp;пропадаю.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES horizontal -->
+    <section id="cases" class="section py-20 relative">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 mb-16">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <span class="chip"><span class="dot"></span> 04 / Результаты</span>
+            </div>
+            <h2 class="reveal text-[clamp(42px,7vw,120px)] font-extrabold leading-[0.9]">
+                Что получают <span class="serif font-normal grad-text">клиенты.</span>
+            </h2>
+        </div>
+
+        <div id="cases-wrap" class="overflow-hidden">
+            <div class="h-track" id="cases-track">
+                <div class="case-card">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #ff6fd8 0%, #0b0a14 70%);"></div>
+                    <div class="cnt">
+                        <div>
+                            <div class="chip mb-4" style="color:#ffb8e6">Лендинг · Онлайн-школа</div>
+                            <div class="serif text-7xl marble-text mb-2">×3,8</div>
+                            <div class="text-[var(--muted)]">рост конверсии после редизайна</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Было CR</div><div class="font-bold">1,1%</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стало CR</div><div class="font-bold text-[var(--accent)]">4,2%</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Срок</div><div class="font-bold">7 дней</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold text-[var(--accent-3)]">Next.js</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #5ee0ff 0%, #0b0a14 70%);"></div>
+                    <div class="cnt">
+                        <div>
+                            <div class="chip mb-4" style="color:#b8eaff">Сайт · B2B SaaS</div>
+                            <div class="serif text-7xl marble-text mb-2">2,1&nbsp;с</div>
+                            <div class="text-[var(--muted)]">LCP вместо прежних 6,8&nbsp;с</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Lighthouse</div><div class="font-bold">98 / 100</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Страниц</div><div class="font-bold">42</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Языков</div><div class="font-bold">RU / EN</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">CRM</div><div class="font-bold text-[var(--accent-3)]">HubSpot</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #9d7bff 0%, #0b0a14 70%);"></div>
+                    <div class="cnt">
+                        <div>
+                            <div class="chip mb-4" style="color:#d6c6ff">ИИ-бот · Клиника</div>
+                            <div class="serif text-7xl marble-text mb-2">−72%</div>
+                            <div class="text-[var(--muted)]">нагрузки на&nbsp;админов ресепшена</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Канал</div><div class="font-bold">Telegram&nbsp;+ сайт</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Диалогов / день</div><div class="font-bold">420</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Авто-запись</div><div class="font-bold">YClients</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Окупился</div><div class="font-bold text-[var(--accent-3)]">За 19&nbsp;дней</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #ff9f6f 0%, #0b0a14 70%);"></div>
+                    <div class="cnt">
+                        <div>
+                            <div class="chip mb-4" style="color:#ffd9b8">MVP · Маркетплейс услуг</div>
+                            <div class="serif text-7xl marble-text mb-2">21&nbsp;день</div>
+                            <div class="text-[var(--muted)]">от&nbsp;идеи до&nbsp;первой сделки</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold">Next + Supabase</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Модули</div><div class="font-bold">Auth · Оплата · Чат</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Юзеров / 3 мес</div><div class="font-bold">4&nbsp;200</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">GMV</div><div class="font-bold text-[var(--accent-3)]">2,4&nbsp;млн</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section py-32 px-6 md:px-12 relative">
+        <div class="blob w-[500px] h-[500px] left-0 top-40" style="background:#ff6fd8;opacity:.35"></div>
+
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <span class="chip"><span class="dot"></span> 05 / Тарифы</span>
+            </div>
+            <h2 class="reveal text-[clamp(42px,7vw,120px)] font-extrabold leading-[0.9] mb-16">
+                Выберите <span class="serif font-normal grad-text">формат.</span>
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="reveal price-card">
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mb-3">Лендинг</div>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <div class="text-5xl font-extrabold">от&nbsp;70</div>
+                        <div class="text-xl text-[var(--muted)]">тыс&nbsp;₽</div>
+                    </div>
+                    <p class="text-[var(--muted)] mb-6 text-sm">Одностраничник под&nbsp;рекламный трафик. Продающая структура, дизайн, код.</p>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li>✓ CRO-копирайтинг</li>
+                        <li>✓ Уникальный дизайн (Figma)</li>
+                        <li>✓ Код&nbsp;— Next.js&nbsp;/&nbsp;Astro</li>
+                        <li>✓ CRM + мессенджеры</li>
+                        <li>✓ SEO-базово, Lighthouse&nbsp;90+</li>
+                        <li>✓ Срок&nbsp;— 7 дней</li>
+                    </ul>
+                    <a href="#lead" class="btn-ghost w-full justify-center inline-flex magnetic">Заказать</a>
+                </div>
+
+                <div class="reveal price-card featured">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 chip" style="background:linear-gradient(135deg,#ff6fd8,#9d7bff);color:#0b0a14;border:none">★ Чаще всего берут</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mb-3">Сайт под&nbsp;ключ</div>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <div class="text-5xl font-extrabold grad-text">от&nbsp;180</div>
+                        <div class="text-xl text-[var(--muted)]">тыс&nbsp;₽</div>
+                    </div>
+                    <p class="text-[var(--muted)] mb-6 text-sm">Корпоративный сайт, каталог услуг, блог. От&nbsp;10 до&nbsp;50&nbsp;страниц.</p>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li>✓ Всё из&nbsp;«Лендинга»</li>
+                        <li>✓ Каталог&nbsp;/ блог&nbsp;/ мультиязык</li>
+                        <li>✓ Админка на&nbsp;Strapi / Sanity</li>
+                        <li>✓ ИИ-виджет на&nbsp;сайт (бонус)</li>
+                        <li>✓ Интеграция с&nbsp;Метрикой + GA4</li>
+                        <li>✓ Срок&nbsp;— 14 дней</li>
+                        <li>✓ 30 дней поддержки</li>
+                    </ul>
+                    <a href="#lead" class="btn w-full justify-center magnetic">Обсудить</a>
+                </div>
+
+                <div class="reveal price-card">
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mb-3">ИИ и&nbsp;MVP</div>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <div class="text-5xl font-extrabold">от&nbsp;350</div>
+                        <div class="text-xl text-[var(--muted)]">тыс&nbsp;₽</div>
+                    </div>
+                    <p class="text-[var(--muted)] mb-6 text-sm">Приложение, личный кабинет, маркетплейс, ИИ-автоматизация под&nbsp;вашу бизнес-задачу.</p>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li>✓ Next.js + Supabase / Postgres</li>
+                        <li>✓ Auth, оплата, роли, чат</li>
+                        <li>✓ GPT-ассистент с&nbsp;RAG по&nbsp;вашей базе</li>
+                        <li>✓ n8n / Make / Zapier сценарии</li>
+                        <li>✓ Интеграции с&nbsp;1С, amoCRM, Telegram</li>
+                        <li>✓ Срок&nbsp;— от&nbsp;3 недель</li>
+                    </ul>
+                    <a href="#lead" class="btn-ghost w-full justify-center inline-flex magnetic">Запросить расчёт</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section py-32 px-6 md:px-12">
+        <div class="max-w-3xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <span class="chip"><span class="dot"></span> 06 / Вопросы</span>
+            </div>
+            <h2 class="reveal text-[clamp(42px,7vw,100px)] font-extrabold leading-[0.9] mb-16">
+                Часто <span class="serif font-normal grad-text">спрашивают.</span>
+            </h2>
+
+            <div>
+                <details class="faq-item" open>
+                    <summary class="flex items-center justify-between list-none">
+                        <span class="text-xl font-bold">Сколько стоит сайт?</span>
+                        <span class="faq-plus text-2xl text-[var(--accent)]">+</span>
+                    </summary>
+                    <p class="text-[var(--muted)] mt-4 leading-relaxed">Лендинг&nbsp;— от&nbsp;70&nbsp;тыс&nbsp;₽, корпоративный сайт&nbsp;— от&nbsp;180&nbsp;тыс&nbsp;₽, MVP и&nbsp;ИИ-приложения&nbsp;— от&nbsp;350&nbsp;тыс&nbsp;₽. Точную цифру называю после 40-минутного брифа.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="flex items-center justify-between list-none">
+                        <span class="text-xl font-bold">Вы один или команда?</span>
+                        <span class="faq-plus text-2xl text-[var(--accent)]">+</span>
+                    </summary>
+                    <p class="text-[var(--muted)] mt-4 leading-relaxed">На&nbsp;небольших проектах&nbsp;— сам: дизайн, код, копирайтинг. На&nbsp;больших подключаю доверенных дизайнера и&nbsp;копирайтера. Коммуникация всегда только со&nbsp;мной, никаких «передам команде».</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="flex items-center justify-between list-none">
+                        <span class="text-xl font-bold">На чём вы&nbsp;пишете?</span>
+                        <span class="faq-plus text-2xl text-[var(--accent)]">+</span>
+                    </summary>
+                    <p class="text-[var(--muted)] mt-4 leading-relaxed">Next.js / React / Astro / Tailwind для фронта. Node.js / Python / Supabase для бэка. OpenAI / Claude / n8n / Make&nbsp;— для автоматизаций. Tilda Zero-Block, если вам нужно потом самим редактировать.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="flex items-center justify-between list-none">
+                        <span class="text-xl font-bold">Что значит «ИИ-автоматизация»?</span>
+                        <span class="faq-plus text-2xl text-[var(--accent)]">+</span>
+                    </summary>
+                    <p class="text-[var(--muted)] mt-4 leading-relaxed">GPT-ассистент, который отвечает клиентам на&nbsp;сайте и&nbsp;в&nbsp;Telegram 24/7 по&nbsp;вашему прайсу и&nbsp;базе знаний. Или бот, который сам&nbsp;квалифицирует лида и&nbsp;кладёт в&nbsp;CRM. Или скрипт, который генерит карточки товаров и&nbsp;посты.</p>
+                </details>
+                <details class="faq-item">
+                    <summary class="flex items-center justify-between list-none">
+                        <span class="text-xl font-bold">Что если мне не&nbsp;понравится результат?</span>
+                        <span class="faq-plus text-2xl text-[var(--accent)]">+</span>
+                    </summary>
+                    <p class="text-[var(--muted)] mt-4 leading-relaxed">Работаем поэтапно с&nbsp;утверждением каждого шага. Прототип → дизайн → верстка. На&nbsp;каждом этапе можно остановиться и&nbsp;забрать свои&nbsp;деньги, если не&nbsp;устроит. Договор&nbsp;— на&nbsp;каждый проект.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEAD -->
+    <section id="lead" class="section py-32 px-6 md:px-12 relative">
+        <div class="blob w-[700px] h-[700px] left-1/2 -translate-x-1/2 top-0" style="background:#9d7bff;opacity:.3"></div>
+
+        <div class="max-w-4xl mx-auto relative">
+            <div class="text-center mb-12">
+                <div class="chip reveal mb-6 inline-flex"><span class="dot"></span> Давайте начнём</div>
+                <h2 class="reveal text-[clamp(42px,7vw,110px)] font-extrabold leading-[0.9] mb-6">
+                    Оценка за <span class="serif font-normal grad-text">24 часа.</span>
+                </h2>
+                <p class="reveal text-lg text-[var(--muted)] max-w-xl mx-auto">Опишите проект&nbsp;— пришлю вилку по&nbsp;цене, срок и&nbsp;короткую схему решения. Бесплатно и&nbsp;без&nbsp;обязательств.</p>
+            </div>
+
+            <form id="leadForm" class="reveal marble-card p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-2">Имя</label>
+                        <input name="name" required class="input" placeholder="Как к&nbsp;вам обращаться">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-2">Контакт</label>
+                        <input name="contact" required class="input" placeholder="Telegram / Телефон">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-2">Текущий сайт (если есть)</label>
+                    <input name="site" class="input" placeholder="https://your-site.ru или ссылка на&nbsp;референс">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-2">Тип проекта</label>
+                    <select name="type" class="input">
+                        <option>Лендинг под&nbsp;рекламу</option>
+                        <option>Корпоративный сайт / каталог</option>
+                        <option>Интернет-магазин</option>
+                        <option>MVP / веб-приложение</option>
+                        <option>ИИ-ассистент / автоматизация</option>
+                        <option>Редизайн существующего сайта</option>
+                        <option>Пока не&nbsp;знаю&nbsp;— помогите выбрать</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs uppercase tracking-[.25em] text-[var(--muted)] mb-2">Расскажите про&nbsp;задачу</label>
+                    <textarea name="goal" rows="3" class="input" placeholder="Что продаёте, какой трафик планируете лить, какой срок важен, есть&nbsp;ли референсы…"></textarea>
+                </div>
+                <button type="submit" id="leadBtn" class="btn w-full justify-center magnetic">
+                    Получить оценку
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                </button>
+                <p class="text-xs text-center text-[var(--muted)] mt-4">Нажимая кнопку, вы соглашаетесь на&nbsp;обработку персональных данных. Спама не&nbsp;шлём.</p>
+            </form>
+
+            <div id="leadSuccess" class="hidden marble-card p-12 text-center">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300 flex items-center justify-center mx-auto mb-6 text-3xl text-[#0b0a14] font-bold">✓</div>
+                <h3 class="text-3xl font-bold mb-3">Принял. Уже думаю.</h3>
+                <p class="text-[var(--muted)]">Напишу вам в&nbsp;течение 2&nbsp;часов. Если срочно&nbsp;— Telegram <a href="https://t.me/stoictarget" class="text-[var(--accent)] underline">@stoictarget</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section py-12 px-6 md:px-12 border-t border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2 font-bold tracking-wider text-sm uppercase">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300"></span>
+                STOIC.TARGET · 2026
+            </div>
+            <div class="serif italic text-[var(--muted)] text-center">«Праведное дело&nbsp;— возвращать клиенту его&nbsp;деньги с&nbsp;процентами».</div>
+            <div class="flex gap-5 text-sm text-[var(--muted)]">
+                <a href="#" class="hover:text-white">Telegram</a>
+                <a href="#" class="hover:text-white">VK</a>
+                <a href="#" class="hover:text-white">hi@stoic.target</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ===== Custom cursor ===== */
+        const cursor = document.querySelector('.cursor');
+        const ring = document.querySelector('.cursor-ring');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            cursor.style.transform = `translate(${mx}px, ${my}px)`;
+        });
+        (function loop() {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            ring.style.transform = `translate(${rx}px, ${ry}px)`;
+            requestAnimationFrame(loop);
+        })();
+        document.querySelectorAll('a, button, summary, .case-card, input, select, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.width = '64px';
+                ring.style.height = '64px';
+                cursor.style.width = '8px';
+                cursor.style.height = '8px';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.width = '44px';
+                ring.style.height = '44px';
+                cursor.style.width = '14px';
+                cursor.style.height = '14px';
+            });
+        });
+
+        /* ===== Three.js scene — floating marble bust proxy ===== */
+        (function threeScene() {
+            const container = document.getElementById('three-scene');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(0, 0, 7);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Lights
+            scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+            const l1 = new THREE.PointLight(0xff6fd8, 2.2, 20);
+            l1.position.set(-3, 2, 3);
+            scene.add(l1);
+            const l2 = new THREE.PointLight(0x5ee0ff, 1.8, 20);
+            l2.position.set(3, -2, 3);
+            scene.add(l2);
+            const l3 = new THREE.DirectionalLight(0xffffff, 0.5);
+            l3.position.set(0, 5, 3);
+            scene.add(l3);
+
+            // Central object — a torus knot (stand-in for "marble" form) with marble shader-ish material
+            const knotGeo = new THREE.TorusKnotGeometry(1.0, 0.32, 220, 28);
+            const knotMat = new THREE.MeshPhysicalMaterial({
+                color: 0xf0eaff,
+                metalness: 0.15,
+                roughness: 0.3,
+                clearcoat: 1,
+                clearcoatRoughness: 0.2,
+                iridescence: 1,
+                iridescenceIOR: 1.8,
+                sheen: 1,
+                sheenColor: 0xff6fd8,
+            });
+            const knot = new THREE.Mesh(knotGeo, knotMat);
+            scene.add(knot);
+
+            // Floating cubes & icosahedrons
+            const shapes = [];
+            const shapeGeos = [
+                new THREE.IcosahedronGeometry(0.28, 0),
+                new THREE.OctahedronGeometry(0.26, 0),
+                new THREE.BoxGeometry(0.36, 0.36, 0.36),
+                new THREE.TetrahedronGeometry(0.32, 0),
+            ];
+            for (let i = 0; i < 14; i++) {
+                const g = shapeGeos[i % shapeGeos.length];
+                const m = new THREE.MeshPhysicalMaterial({
+                    color: i % 2 ? 0xff6fd8 : 0x5ee0ff,
+                    metalness: 0.5,
+                    roughness: 0.25,
+                    iridescence: 1,
+                    transmission: i % 3 === 0 ? 0.4 : 0,
+                    thickness: 0.5,
+                });
+                const mesh = new THREE.Mesh(g, m);
+                mesh.position.set(
+                    (Math.random() - 0.5) * 9,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 4 - 1
+                );
+                mesh.userData.speed = 0.002 + Math.random() * 0.004;
+                mesh.userData.phase = Math.random() * Math.PI * 2;
+                scene.add(mesh);
+                shapes.push(mesh);
+            }
+
+            // Mouse parallax
+            let tx = 0, ty = 0, cx = 0, cy = 0;
+            window.addEventListener('mousemove', e => {
+                tx = (e.clientX / window.innerWidth - 0.5);
+                ty = (e.clientY / window.innerHeight - 0.5);
+            });
+
+            // Scroll influence
+            let scrollT = 0;
+            window.addEventListener('scroll', () => {
+                scrollT = window.scrollY;
+            }, { passive: true });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                cx += (tx - cx) * 0.04;
+                cy += (ty - cy) * 0.04;
+
+                const st = scrollT * 0.0008;
+
+                knot.rotation.x = st * 0.7 + cy * 0.4;
+                knot.rotation.y = st + cx * 0.8;
+                knot.position.x = cx * 0.8;
+                knot.position.y = -cy * 0.5 - Math.min(st * 0.4, 4);
+                knot.scale.setScalar(1 + Math.sin(st * 2) * 0.05);
+
+                shapes.forEach((s, i) => {
+                    s.rotation.x += s.userData.speed;
+                    s.rotation.y += s.userData.speed * 1.3;
+                    s.position.y += Math.sin(performance.now() * 0.0008 + s.userData.phase) * 0.002;
+                    s.position.x += cx * 0.001 * (i % 2 ? 1 : -1);
+                });
+
+                camera.position.x = cx * 0.6;
+                camera.position.y = -cy * 0.4;
+                camera.lookAt(0, 0, 0);
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        /* ===== Reveal animations ===== */
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%' }
+            });
+        });
+
+        /* ===== Problem scroll-tell ===== */
+        const psteps = gsap.utils.toArray('[data-pstep]');
+        ScrollTrigger.create({
+            trigger: '#problem',
+            start: 'top top',
+            end: '+=400%',
+            scrub: true,
+            pin: '.pin-stage',
+            pinSpacing: false,
+            onUpdate: self => {
+                const p = self.progress;
+                psteps.forEach((s, i) => {
+                    const threshold = 0.15 + i * 0.18;
+                    const show = p > threshold;
+                    gsap.to(s, { opacity: show ? 1 : 0, y: show ? 0 : 40, duration: .6, overwrite: 'auto' });
+                });
+            }
+        });
+
+        /* ===== Big scrolling text ===== */
+        gsap.to('#big-text-wrap', {
+            xPercent: -60,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#big-text-wrap',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        /* ===== Stat counter ===== */
+        document.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseFloat(el.dataset.count);
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    const obj = { v: 0 };
+                    gsap.to(obj, {
+                        v: target, duration: 2.2, ease: 'power3.out',
+                        onUpdate: () => {
+                            el.textContent = Math.round(obj.v).toLocaleString('ru-RU');
+                        }
+                    });
+                }
+            });
+        });
+
+        /* ===== Process sticky sync ===== */
+        const steps = gsap.utils.toArray('.process-step');
+        const weekNum = document.getElementById('week-num');
+        const weekTitle = document.getElementById('week-title');
+        const weekBar = document.getElementById('week-bar');
+        steps.forEach((step, i) => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: 'top 60%',
+                end: 'bottom 60%',
+                onEnter: () => update(i),
+                onEnterBack: () => update(i),
+            });
+        });
+        function update(i) {
+            const step = steps[i];
+            weekNum.textContent = step.dataset.week;
+            weekTitle.innerHTML = step.dataset.title;
+            weekBar.style.width = ((i + 1) / steps.length * 100) + '%';
+        }
+
+        /* ===== Cases horizontal ===== */
+        const track = document.getElementById('cases-track');
+        if (track) {
+            const getDist = () => track.scrollWidth - window.innerWidth + 48;
+            gsap.to(track, {
+                x: () => -getDist(),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#cases-wrap',
+                    start: 'top 10%',
+                    end: () => '+=' + getDist(),
+                    scrub: 1,
+                    pin: true,
+                    invalidateOnRefresh: true
+                }
+            });
+        }
+
+        /* ===== Lead form ===== */
+        document.getElementById('leadForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const btn = document.getElementById('leadBtn');
+            btn.disabled = true;
+            btn.innerHTML = 'Отправляю…';
+            const data = Object.fromEntries(new FormData(e.target));
+            try {
+                await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            } catch (err) { /* тихо */ }
+            e.target.classList.add('hidden');
+            document.getElementById('leadSuccess').classList.remove('hidden');
+            document.getElementById('leadSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+
+</html>

@@ -3,12 +3,70 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Сайты, лендинги и ИИ-автоматизации под ключ — STOIC.STUDIO</title>
+    <title>OAIWeb Digital — сайты, лендинги и ИИ-автоматизации под ключ · Остап Андреевич</title>
     <meta name="description"
-        content="Разрабатываю сайты, лендинги, мобильные приложения и ИИ-автоматизации под ключ. От брифа до запуска — 7-14 дней. Код, который зарабатывает.">
+        content="Делаю сайты, которые выглядят дорого, работают быстро и продают без шаблонного AI-мусора. Лендинги, сайты под ключ, MVP, ИИ-автоматизации. От брифа до запуска — 7-14 дней.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Сайты и ИИ-автоматизации, которые приносят деньги">
-    <meta property="og:description" content="Лендинг за 7 дней. Сайт за 14. ИИ-ассистент, который закрывает клиента пока вы спите.">
+    <meta name="theme-color" content="#0a0608">
+    <meta name="author" content="Остап Андреевич · OAIWeb Digital">
+    <link rel="canonical" href="https://oaiweb.digital/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="OAIWeb Digital">
+    <meta property="og:url" content="https://oaiweb.digital/">
+    <meta property="og:title" content="OAIWeb Digital — сайты, которые выглядят дорого и продают">
+    <meta property="og:description" content="Лендинг за 7 дней. Сайт под ключ за 14. ИИ-ассистент, который закрывает клиента пока вы спите.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OAIWeb Digital — сайты, которые продают">
+    <meta name="twitter:description" content="Сайты, лендинги, MVP и ИИ-автоматизации под ключ. Премиальный код за 7-14 дней.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://oaiweb.digital/#ostap",
+          "name": "Остап Андреевич",
+          "alternateName": "anonosya",
+          "jobTitle": "Web & AI Developer",
+          "url": "https://oaiweb.digital/",
+          "email": "mailto:hello@oaiweb.digital",
+          "sameAs": [
+            "https://t.me/anonosya",
+            "https://anonosya-ux.github.io/web/"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://oaiweb.digital/#studio",
+          "name": "OAIWeb Digital",
+          "description": "Студия одного — премиальные сайты, лендинги, MVP и ИИ-автоматизации под ключ.",
+          "url": "https://oaiweb.digital/",
+          "founder": { "@id": "https://oaiweb.digital/#ostap" },
+          "areaServed": "RU",
+          "priceRange": "₽₽₽",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "hello@oaiweb.digital",
+            "availableLanguage": ["ru"]
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Услуги",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Лендинг под ключ" }, "priceCurrency": "RUB", "price": "70000" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Сайт под ключ" }, "priceCurrency": "RUB", "price": "180000" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ИИ-автоматизации и MVP" }, "priceCurrency": "RUB", "price": "350000" }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,14 +82,18 @@
 
     <style>
         :root {
-            --bg: #0b0a14;
-            --bg-2: #14102a;
-            --ink: #f5f1ff;
-            --muted: #9a92c4;
-            --accent: #ff6fd8;
-            --accent-2: #9d7bff;
-            --accent-3: #5ee0ff;
-            --marble: #efe9f7;
+            --bg: #0a0608;
+            --bg-2: #160a10;
+            --ink: #f6efe8;
+            --muted: #a89189;
+            --accent: #b91538;
+            /* deep cherry */
+            --accent-2: #6e0b22;
+            /* burgundy */
+            --accent-3: #e8b5a3;
+            /* pearl peach */
+            --gold: #c9a875;
+            --marble: #f1e8de;
         }
 
         * {
@@ -66,6 +128,7 @@
             height: 14px;
             border-radius: 50%;
             background: var(--accent);
+            box-shadow: 0 0 12px rgba(185, 21, 56, .6);
             pointer-events: none;
             mix-blend-mode: difference;
             z-index: 9999;
@@ -120,14 +183,21 @@
 
         /* Gradient text */
         .grad-text {
-            background: linear-gradient(90deg, #ff6fd8, #9d7bff 40%, #5ee0ff);
+            background: linear-gradient(90deg, #e8b5a3, #b91538 50%, #6e0b22);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .marble-text {
-            background: linear-gradient(180deg, #ffffff 0%, #d7c9ff 70%, #8c7eb6 100%);
+            background: linear-gradient(180deg, #f6efe8 0%, #d6b8a8 70%, #8a4a4a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gold-text {
+            background: linear-gradient(180deg, #f5e2c0 0%, #c9a875 60%, #8a6939 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -188,7 +258,7 @@
             height: 8px;
             border-radius: 50%;
             background: var(--accent);
-            box-shadow: 0 0 12px var(--accent);
+            box-shadow: 0 0 12px rgba(185, 21, 56, .6);
             animation: pulse 1.6s ease-in-out infinite;
         }
 
@@ -523,78 +593,90 @@
             transform: translateY(110%) rotate(8deg);
         }
 
-        /* Raccoon follower */
-        #raccoon {
+        /* Cherry — sweep narrative element */
+        #cherry-stage {
             position: fixed;
-            bottom: 12px;
-            left: 0;
-            width: 90px;
-            height: 90px;
+            inset: 0;
             pointer-events: none;
-            z-index: 40;
-            transform: translateX(0);
-            transition: transform .15s ease-out;
-            filter: drop-shadow(0 10px 30px rgba(94, 224, 255, .35));
+            z-index: 35;
         }
 
-        #raccoon .raccoon-img {
+        #cherry {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 60px;
+            height: 80px;
+            transform: translate(-50%, 0);
+            will-change: transform;
+            filter: drop-shadow(0 18px 40px rgba(185, 21, 56, .55)) drop-shadow(0 0 18px rgba(185, 21, 56, .3));
+        }
+
+        #cherry svg {
             width: 100%;
             height: 100%;
-            background-image: url("raccoon.png");
-            background-size: contain;
-            background-position: center bottom;
-            background-repeat: no-repeat;
-            animation: raccoon-run 0.5s steps(1) infinite;
-            transform-origin: bottom center;
+            transform-origin: center top;
+            animation: cherry-sway 2.2s ease-in-out infinite;
         }
 
-        @keyframes raccoon-run {
+        @keyframes cherry-sway {
 
             0%,
             100% {
-                transform: translateY(0) rotate(-2deg) scaleY(1);
+                transform: rotate(-6deg);
             }
 
             50% {
-                transform: translateY(-6px) rotate(2deg) scaleY(1.03);
+                transform: rotate(6deg);
             }
         }
 
-        #raccoon.idle .raccoon-img {
-            animation: raccoon-idle 2.4s ease-in-out infinite;
+        #cherry.flying svg {
+            animation: cherry-spin 1.8s linear infinite;
         }
 
-        @keyframes raccoon-idle {
-
-            0%,
-            100% {
-                transform: translateY(0)
+        @keyframes cherry-spin {
+            from {
+                transform: rotate(0deg);
             }
 
-            50% {
-                transform: translateY(-3px)
+            to {
+                transform: rotate(360deg);
             }
         }
 
-        #raccoon .bubble {
+        /* Trail particle */
+        .cherry-trail {
             position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-10px);
-            background: #14102a;
-            border: 1px solid rgba(94, 224, 255, .4);
-            color: #f5f1ff;
-            padding: 6px 12px;
-            border-radius: 10px;
-            white-space: nowrap;
-            font-size: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232, 181, 163, .9), rgba(185, 21, 56, .2) 70%, transparent);
+            pointer-events: none;
             opacity: 0;
-            transition: opacity .3s;
+        }
+
+        /* Hero video bg */
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: .5;
+            mix-blend-mode: screen;
             pointer-events: none;
         }
 
-        #raccoon.talking .bubble {
-            opacity: 1;
+        .hero-video-mask {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                radial-gradient(60% 80% at 50% 30%, transparent 0%, rgba(10, 6, 8, .4) 60%, var(--bg) 100%),
+                linear-gradient(180deg, rgba(10, 6, 8, .2) 0%, var(--bg) 100%);
+            pointer-events: none;
         }
 
         /* Hide scrollbar pure aesthetic */
@@ -614,13 +696,40 @@
 </head>
 
 <body class="grain">
-    <div class="cursor-ring"><span class="cursor-label">View →</span></div>
+    <div class="cursor-ring"><span class="cursor-label">Смотреть →</span></div>
     <div class="cursor"></div>
 
-    <!-- Raccoon follower -->
-    <div id="raccoon" class="idle" aria-hidden="true">
-        <div class="bubble">Смотри — кейсы ↑</div>
-        <div class="raccoon-img"></div>
+    <!-- Cherry: sweep narrative element -->
+    <div id="cherry-stage" aria-hidden="true">
+        <div id="cherry">
+            <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="cherryGrad" cx="35%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#ff8a9e" />
+                        <stop offset="40%" stop-color="#b91538" />
+                        <stop offset="100%" stop-color="#3d0610" />
+                    </radialGradient>
+                    <linearGradient id="stemGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#7a5a2b" />
+                        <stop offset="100%" stop-color="#3a2810" />
+                    </linearGradient>
+                    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#7a8a3e" />
+                        <stop offset="100%" stop-color="#2e3a14" />
+                    </linearGradient>
+                </defs>
+                <!-- Stem -->
+                <path d="M30 4 Q26 18 28 38" stroke="url(#stemGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <!-- Leaf -->
+                <path d="M30 14 Q44 8 50 18 Q42 22 30 18 Z" fill="url(#leafGrad)" />
+                <path d="M32 14 Q42 14 48 18" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none" />
+                <!-- Cherry body -->
+                <ellipse cx="28" cy="56" rx="20" ry="22" fill="url(#cherryGrad)" />
+                <!-- Highlight -->
+                <ellipse cx="22" cy="48" rx="6" ry="8" fill="rgba(255,255,255,.35)" />
+                <ellipse cx="20" cy="46" rx="2" ry="3" fill="rgba(255,255,255,.6)" />
+            </svg>
+        </div>
     </div>
 
     <!-- Fixed 3D scene -->
@@ -628,35 +737,40 @@
 
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between backdrop-blur-md bg-[#0b0a14]/40 border-b border-white/5">
-        <a href="#" class="flex items-center gap-2 font-bold tracking-wider text-sm uppercase">
-            <span class="inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300"></span>
-            STOIC.TARGET
+        <a href="#" class="flex items-center gap-3 font-bold tracking-wider text-sm uppercase">
+            <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:radial-gradient(circle at 30% 30%, #ff8a9e, #b91538 50%, #3d0610);box-shadow:0 0 12px rgba(185,21,56,.7)"></span>
+            <span>OAIWeb<span class="text-[var(--muted)]">·digital</span></span>
         </a>
         <div class="hidden md:flex items-center gap-8 text-sm text-[var(--muted)]">
-            <a href="#philosophy" class="hover:text-white transition">Философия</a>
+            <a href="#philosophy" class="hover:text-white transition">Услуги</a>
             <a href="#process" class="hover:text-white transition">Процесс</a>
             <a href="#cases" class="hover:text-white transition">Кейсы</a>
             <a href="#pricing" class="hover:text-white transition">Тарифы</a>
             <a href="#faq" class="hover:text-white transition">FAQ</a>
         </div>
-        <a href="#lead" class="btn-ghost text-sm">Начать</a>
+        <a href="https://t.me/anonosya" target="_blank" rel="noopener" class="btn-ghost text-sm magnetic">Написать в&nbsp;TG</a>
     </nav>
 
     <!-- HERO -->
-    <section class="section min-h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-28 pb-20 relative">
-        <div class="blob w-[600px] h-[600px] -left-40 top-20" style="background:#ff6fd8"></div>
-        <div class="blob w-[500px] h-[500px] right-0 bottom-0" style="background:#5ee0ff"></div>
+    <section id="hero" class="section min-h-[100vh] flex flex-col justify-center px-6 md:px-12 pt-28 pb-20 relative overflow-hidden">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="hero-loop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-mask"></div>
+        <div class="blob w-[600px] h-[600px] -left-40 top-20" style="background:#b91538;opacity:.35"></div>
+        <div class="blob w-[500px] h-[500px] right-0 bottom-0" style="background:#6e0b22;opacity:.4"></div>
 
         <div class="relative max-w-6xl mx-auto w-full">
-            <div class="chip reveal mb-6"><span class="dot"></span> Студия разработки под ключ · сайты · ИИ · автоматизации</div>
+            <div class="chip reveal mb-6"><span class="dot"></span> OAIWeb Digital · сайты · ИИ · автоматизации · Москва</div>
             <div class="terminal reveal mb-8" id="terminalLine">&gt;&nbsp;<span id="termText"></span><span class="caret"></span></div>
-            <h1 class="text-[clamp(48px,9vw,160px)] font-extrabold leading-[0.88] tracking-[-0.03em] mb-8" data-split>
-                Сайты, что<br>
-                <span class="serif font-normal marble-text">работают,</span><br>
-                <span class="grad-text">пока вы спите</span>
+            <h1 class="text-[clamp(48px,9vw,150px)] font-extrabold leading-[0.86] tracking-[-0.035em] mb-8" data-split>
+                Сайты, что выглядят<br>
+                <span class="serif font-normal marble-text">дорого,</span><br>
+                работают <span class="grad-text">быстро,</span><br>
+                и продают <span class="serif font-normal gold-text">по-настоящему</span>
             </h1>
             <p class="reveal max-w-xl text-lg md:text-xl text-[var(--muted)] mb-10">
-                Разрабатываю лендинги, сайты, мобильные приложения и&nbsp;ИИ-автоматизации под&nbsp;ключ. От&nbsp;идеи до&nbsp;первой заявки&nbsp;— 7&nbsp;дней. Код, дизайн и&nbsp;маркетинг в&nbsp;одной голове.
+                Делаю сайты, лендинги и&nbsp;ИИ-автоматизации под&nbsp;ключ&nbsp;— без&nbsp;шаблонного AI-мусора и&nbsp;«тильда-как-у-всех». Код, дизайн, маркетинг и&nbsp;здравый смысл в&nbsp;одной голове.
             </p>
             <div class="reveal flex flex-wrap gap-4 items-center">
                 <a href="#lead" class="btn magnetic">
@@ -804,20 +918,20 @@
     </section>
 
     <!-- STATS -->
-    <section class="section py-32 px-6 md:px-12 relative">
+    <section id="stats" class="section py-32 px-6 md:px-12 relative">
         <div class="max-w-6xl mx-auto">
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="reveal">
-                    <div class="stat-num grad-text" data-count="142">0</div>
-                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Проектов в&nbsp;ВК</div>
+                    <div class="stat-num grad-text" data-count="7">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Дней до&nbsp;запуска лендинга</div>
                 </div>
                 <div class="reveal">
-                    <div class="stat-num marble-text" data-count="380">0</div>
-                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Средний ROMI, %</div>
+                    <div class="stat-num gold-text" data-count="98">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Lighthouse Performance</div>
                 </div>
                 <div class="reveal">
-                    <div class="stat-num grad-text" data-count="42">0</div>
-                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">Лид от, ₽</div>
+                    <div class="stat-num marble-text" data-count="100">0</div>
+                    <div class="text-sm uppercase tracking-[.25em] text-[var(--muted)] mt-2">% работы напрямую со&nbsp;мной</div>
                 </div>
             </div>
         </div>
@@ -903,73 +1017,73 @@
 
         <div id="cases-wrap" class="overflow-hidden">
             <div class="h-track" id="cases-track">
-                <div class="case-card">
-                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #ff6fd8 0%, #0b0a14 70%);"></div>
+                <a class="case-card" href="https://mosspecteh.vercel.app" target="_blank" rel="noopener">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #b91538 0%, #0a0608 70%);"></div>
                     <div class="cnt">
                         <div>
-                            <div class="chip mb-4" style="color:#ffb8e6">Лендинг · Онлайн-школа</div>
-                            <div class="serif text-7xl marble-text mb-2">×3,8</div>
-                            <div class="text-[var(--muted)]">рост конверсии после редизайна</div>
+                            <div class="chip mb-4" style="color:#f0c2b8">Mosspecteh · аренда спецтехники</div>
+                            <div class="serif text-6xl md:text-7xl marble-text mb-2 leading-none">AI-калькулятор</div>
+                            <div class="text-[var(--muted)] mt-3">вместо обычной заявки&nbsp;— подбор техники в&nbsp;диалоге</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Было CR</div><div class="font-bold">1,1%</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стало CR</div><div class="font-bold text-[var(--accent)]">4,2%</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Срок</div><div class="font-bold">7 дней</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold text-[var(--accent-3)]">Next.js</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold">Next.js · Tailwind</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Хостинг</div><div class="font-bold">Vercel · REG.RU</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Объём</div><div class="font-bold">SEO-структура</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Домен</div><div class="font-bold gold-text">mosspecteh.ru</div></div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="case-card">
-                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #5ee0ff 0%, #0b0a14 70%);"></div>
+                <a class="case-card" href="https://xn----8sbabcgbw5ck1cr8d.xn--p1ai" target="_blank" rel="noopener">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #6e0b22 0%, #0a0608 70%);"></div>
                     <div class="cnt">
                         <div>
-                            <div class="chip mb-4" style="color:#b8eaff">Сайт · B2B SaaS</div>
-                            <div class="serif text-7xl marble-text mb-2">2,1&nbsp;с</div>
-                            <div class="text-[var(--muted)]">LCP вместо прежних 6,8&nbsp;с</div>
+                            <div class="chip mb-4" style="color:#e8b5a3">Код-нейро · нейрокодирование</div>
+                            <div class="serif text-6xl md:text-7xl marble-text mb-2 leading-none">SEO + UX</div>
+                            <div class="text-[var(--muted)] mt-3">упаковка под&nbsp;холодный трафик и&nbsp;поисковый спрос</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Lighthouse</div><div class="font-bold">98 / 100</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Страниц</div><div class="font-bold">42</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Языков</div><div class="font-bold">RU / EN</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">CRM</div><div class="font-bold text-[var(--accent-3)]">HubSpot</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Ниша</div><div class="font-bold">Здоровье · регулир.</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Подача</div><div class="font-bold">Юр.&nbsp;аккуратная</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Поиск</div><div class="font-bold">Яндекс + Google</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Домен</div><div class="font-bold gold-text">код-нейро.рф</div></div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="case-card">
-                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #9d7bff 0%, #0b0a14 70%);"></div>
+                <a class="case-card" href="https://fatukhin-website.vercel.app" target="_blank" rel="noopener">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #8a4a4a 0%, #0a0608 70%);"></div>
                     <div class="cnt">
                         <div>
-                            <div class="chip mb-4" style="color:#d6c6ff">ИИ-бот · Клиника</div>
-                            <div class="serif text-7xl marble-text mb-2">−72%</div>
-                            <div class="text-[var(--muted)]">нагрузки на&nbsp;админов ресепшена</div>
+                            <div class="chip mb-4" style="color:#e8b5a3">Fatukhin · экспертный сайт</div>
+                            <div class="serif text-6xl md:text-7xl marble-text mb-2 leading-none">Доверие</div>
+                            <div class="text-[var(--muted)] mt-3">вытащил из&nbsp;«AI-театра» в&nbsp;понятную экспертную подачу</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Канал</div><div class="font-bold">Telegram&nbsp;+ сайт</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Диалогов / день</div><div class="font-bold">420</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Авто-запись</div><div class="font-bold">YClients</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Окупился</div><div class="font-bold text-[var(--accent-3)]">За 19&nbsp;дней</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold">React · Vercel</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Дизайн</div><div class="font-bold">Дизайн-система</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Тексты</div><div class="font-bold">Копирайтинг</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Цель</div><div class="font-bold gold-text">Заявки на&nbsp;консалт</div></div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="case-card">
-                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #ff9f6f 0%, #0b0a14 70%);"></div>
+                <a class="case-card" href="https://anonosya-ux.github.io/web/" target="_blank" rel="noopener">
+                    <div class="bg" style="background:radial-gradient(80% 100% at 50% 0%, #c9a875 0%, #0a0608 70%);"></div>
                     <div class="cnt">
                         <div>
-                            <div class="chip mb-4" style="color:#ffd9b8">MVP · Маркетплейс услуг</div>
-                            <div class="serif text-7xl marble-text mb-2">21&nbsp;день</div>
-                            <div class="text-[var(--muted)]">от&nbsp;идеи до&nbsp;первой сделки</div>
+                            <div class="chip mb-4" style="color:#e8d4a8">OAIWeb · первое портфолио</div>
+                            <div class="serif text-6xl md:text-7xl marble-text mb-2 leading-none">С&nbsp;этого начал</div>
+                            <div class="text-[var(--muted)] mt-3">первый публичный сайт-портфолио&nbsp;— база, с&nbsp;которой пошли первые клиенты</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold">Next + Supabase</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Модули</div><div class="font-bold">Auth · Оплата · Чат</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Юзеров / 3 мес</div><div class="font-bold">4&nbsp;200</div></div>
-                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">GMV</div><div class="font-bold text-[var(--accent-3)]">2,4&nbsp;млн</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Стек</div><div class="font-bold">HTML · CSS · JS</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Хостинг</div><div class="font-bold">GitHub Pages</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Год</div><div class="font-bold">2024</div></div>
+                            <div><div class="text-[var(--muted)] text-xs uppercase tracking-wider mb-1">Статус</div><div class="font-bold gold-text">Жив. Работает</div></div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -1041,6 +1155,49 @@
                         <li>✓ Срок&nbsp;— от&nbsp;3 недель</li>
                     </ul>
                     <a href="#lead" class="btn-ghost w-full justify-center inline-flex magnetic">Запросить расчёт</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO -->
+    <section id="who" class="section py-32 px-6 md:px-12 relative overflow-hidden">
+        <div class="blob w-[600px] h-[600px] -right-40 top-0" style="background:#6e0b22;opacity:.35"></div>
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-[420px_1fr] gap-12 items-center">
+                <div class="reveal">
+                    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10" style="background:linear-gradient(160deg,#160a10 0%,#0a0608 100%)">
+                        <img src="expert.jpg" alt="Остап Андреевич — OAIWeb Digital" class="absolute inset-0 w-full h-full object-cover object-top" style="filter:contrast(1.1) saturate(.65) sepia(.15) hue-rotate(-15deg);mix-blend-mode:luminosity">
+                        <div class="absolute inset-0" style="background:radial-gradient(80% 80% at 50% 30%, transparent 0%, rgba(110,11,34,.55) 70%, rgba(10,6,8,.8) 100%);mix-blend-mode:multiply"></div>
+                        <div class="absolute inset-0" style="background:linear-gradient(180deg, transparent 40%, rgba(10,6,8,.7) 100%)"></div>
+                        <div class="absolute bottom-5 left-5 right-5">
+                            <div class="text-xs uppercase tracking-[.25em] text-[var(--gold)]">Founder · Lead Developer</div>
+                            <div class="text-2xl font-bold mt-1">Остап Андреевич</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="chip reveal mb-6"><span class="dot"></span> Кто будет делать</div>
+                    <h2 class="reveal text-[clamp(38px,6vw,90px)] font-extrabold leading-[0.92] mb-6">
+                        Со&nbsp;мной вы&nbsp;общаетесь<br>
+                        <span class="serif font-normal grad-text">напрямую.</span>
+                    </h2>
+                    <p class="reveal text-lg text-[var(--muted)] mb-5 leading-relaxed">Меня зовут <span class="text-white font-semibold">Остап</span>. Я&nbsp;основатель OAIWeb Digital. В&nbsp;вебе и&nbsp;ИИ-разработке с&nbsp;2024&nbsp;года, в&nbsp;портфолио уже&nbsp;4&nbsp;публичных проекта в&nbsp;разных нишах: спецтехника, медицина, экспертный консалтинг.</p>
+                    <p class="reveal text-lg text-[var(--muted)] mb-8 leading-relaxed">Не&nbsp;передаю проект «команде». Не&nbsp;пропадаю после релиза. Не&nbsp;собираю сайты из&nbsp;тильда-блоков. Пишу код руками, копирайт&nbsp;— головой, а&nbsp;цена&nbsp;— честная, а&nbsp;не&nbsp;«агентская».</p>
+                    <div class="reveal grid grid-cols-3 gap-6">
+                        <div>
+                            <div class="serif text-5xl gold-text leading-none">2024</div>
+                            <div class="text-xs uppercase tracking-[.2em] text-[var(--muted)] mt-2">Год старта</div>
+                        </div>
+                        <div>
+                            <div class="serif text-5xl gold-text leading-none">4+</div>
+                            <div class="text-xs uppercase tracking-[.2em] text-[var(--muted)] mt-2">Публичных кейса</div>
+                        </div>
+                        <div>
+                            <div class="serif text-5xl gold-text leading-none">МСК</div>
+                            <div class="text-xs uppercase tracking-[.2em] text-[var(--muted)] mt-2">UTC+3 · РФ&nbsp;/&nbsp;СНГ</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1152,7 +1309,7 @@
             <div id="leadSuccess" class="hidden marble-card p-12 text-center">
                 <div class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300 flex items-center justify-center mx-auto mb-6 text-3xl text-[#0b0a14] font-bold">✓</div>
                 <h3 class="text-3xl font-bold mb-3">Принял. Уже думаю.</h3>
-                <p class="text-[var(--muted)]">Напишу вам в&nbsp;течение 2&nbsp;часов. Если срочно&nbsp;— Telegram <a href="https://t.me/stoictarget" class="text-[var(--accent)] underline">@stoictarget</a>.</p>
+                <p class="text-[var(--muted)]">Отвечу в&nbsp;течение пары часов. Если срочно&nbsp;— пиши в&nbsp;Telegram <a href="https://t.me/anonosya" class="text-[var(--accent)] underline" style="color:#e8b5a3">@anonosya</a>.</p>
             </div>
         </div>
     </section>
@@ -1161,20 +1318,30 @@
     <footer class="section py-12 px-6 md:px-12 border-t border-white/5">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-2 font-bold tracking-wider text-sm uppercase">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-400 to-cyan-300"></span>
-                STOIC.TARGET · 2026
+                <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:radial-gradient(circle at 30% 30%, #ff8a9e, #b91538 50%, #3d0610)"></span>
+                OAIWeb·digital · 2026
             </div>
-            <div class="serif italic text-[var(--muted)] text-center">«Праведное дело&nbsp;— возвращать клиенту его&nbsp;деньги с&nbsp;процентами».</div>
+            <div class="serif italic text-[var(--muted)] text-center">«Сайт&nbsp;— это не&nbsp;файл. Это инструмент, который должен зарабатывать».</div>
             <div class="flex gap-5 text-sm text-[var(--muted)]">
-                <a href="#" class="hover:text-white">Telegram</a>
-                <a href="#" class="hover:text-white">VK</a>
-                <a href="#" class="hover:text-white">hi@stoic.target</a>
+                <a href="https://t.me/anonosya" target="_blank" rel="noopener" class="hover:text-white">Telegram</a>
+                <a href="mailto:hello@oaiweb.digital" class="hover:text-white">hello@oaiweb.digital</a>
             </div>
         </div>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+
+        /* ===== Lenis smooth scroll (Locomotive-style) ===== */
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 1,
+        });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(time => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
 
         /* ===== Custom cursor ===== */
         const cursor = document.querySelector('.cursor');
@@ -1191,7 +1358,7 @@
             ring.style.transform = `translate(${rx}px, ${ry}px)`;
             requestAnimationFrame(loop);
         })();
-        document.querySelectorAll('a, button, summary, .case-card, input, select, textarea').forEach(el => {
+        document.querySelectorAll('a, button, summary, input, select, textarea').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 ring.style.width = '64px';
                 ring.style.height = '64px';
@@ -1205,116 +1372,111 @@
                 cursor.style.height = '14px';
             });
         });
+        // Cursor morph "Смотреть →" over case cards
+        document.querySelectorAll('.case-card').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('has-text'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('has-text'));
+        });
 
-        /* ===== Three.js scene — floating marble bust proxy ===== */
+        /* ===== Magnetic buttons (motionsites pattern) ===== */
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', e => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) * 0.25;
+                const y = (e.clientY - r.top - r.height / 2) * 0.25;
+                gsap.to(el, { x, y, duration: .4, ease: 'power3.out' });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, { x: 0, y: 0, duration: .6, ease: 'elastic.out(1,.4)' });
+            });
+        });
+
+        /* ===== Terminal typewriter ===== */
+        (function terminal() {
+            const el = document.getElementById('termText');
+            if (!el) return;
+            const lines = [
+                'INIT_PROJECT.exe',
+                'STACK: Next.js · Tailwind · Vercel',
+                'OFFER: сайт под ключ за 7-14 дней',
+                'STATUS: открыт для новых проектов_',
+            ];
+            let li = 0, ci = 0, deleting = false;
+            function tick() {
+                const cur = lines[li];
+                if (!deleting) {
+                    el.textContent = cur.slice(0, ++ci);
+                    if (ci === cur.length) { deleting = true; setTimeout(tick, 1800); return; }
+                } else {
+                    el.textContent = cur.slice(0, --ci);
+                    if (ci === 0) { deleting = false; li = (li + 1) % lines.length; }
+                }
+                setTimeout(tick, deleting ? 28 : 60 + Math.random() * 40);
+            }
+            tick();
+        })();
+
+        /* ===== Hero Three.js: subtle floating glass shards over video ===== */
         (function threeScene() {
             const container = document.getElementById('three-scene');
             if (!container) return;
-
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
             camera.position.set(0, 0, 7);
-
             const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
 
-            // Lights
-            scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-            const l1 = new THREE.PointLight(0xff6fd8, 2.2, 20);
-            l1.position.set(-3, 2, 3);
-            scene.add(l1);
-            const l2 = new THREE.PointLight(0x5ee0ff, 1.8, 20);
-            l2.position.set(3, -2, 3);
-            scene.add(l2);
-            const l3 = new THREE.DirectionalLight(0xffffff, 0.5);
-            l3.position.set(0, 5, 3);
-            scene.add(l3);
+            scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+            const l1 = new THREE.PointLight(0xb91538, 2.5, 20);
+            l1.position.set(-3, 2, 3); scene.add(l1);
+            const l2 = new THREE.PointLight(0xc9a875, 1.6, 20);
+            l2.position.set(3, -2, 3); scene.add(l2);
 
-            // Central object — a torus knot (stand-in for "marble" form) with marble shader-ish material
-            const knotGeo = new THREE.TorusKnotGeometry(1.0, 0.32, 220, 28);
-            const knotMat = new THREE.MeshPhysicalMaterial({
-                color: 0xf0eaff,
-                metalness: 0.15,
-                roughness: 0.3,
-                clearcoat: 1,
-                clearcoatRoughness: 0.2,
-                iridescence: 1,
-                iridescenceIOR: 1.8,
-                sheen: 1,
-                sheenColor: 0xff6fd8,
-            });
-            const knot = new THREE.Mesh(knotGeo, knotMat);
-            scene.add(knot);
-
-            // Floating cubes & icosahedrons
             const shapes = [];
-            const shapeGeos = [
-                new THREE.IcosahedronGeometry(0.28, 0),
-                new THREE.OctahedronGeometry(0.26, 0),
-                new THREE.BoxGeometry(0.36, 0.36, 0.36),
-                new THREE.TetrahedronGeometry(0.32, 0),
+            const geos = [
+                new THREE.IcosahedronGeometry(0.32, 0),
+                new THREE.OctahedronGeometry(0.28, 0),
+                new THREE.TetrahedronGeometry(0.34, 0),
             ];
-            for (let i = 0; i < 14; i++) {
-                const g = shapeGeos[i % shapeGeos.length];
+            for (let i = 0; i < 12; i++) {
+                const g = geos[i % geos.length];
                 const m = new THREE.MeshPhysicalMaterial({
-                    color: i % 2 ? 0xff6fd8 : 0x5ee0ff,
-                    metalness: 0.5,
-                    roughness: 0.25,
-                    iridescence: 1,
-                    transmission: i % 3 === 0 ? 0.4 : 0,
-                    thickness: 0.5,
+                    color: i % 2 ? 0xb91538 : 0xc9a875,
+                    metalness: 0.6, roughness: 0.2,
+                    transmission: i % 3 === 0 ? 0.5 : 0,
+                    thickness: 0.6, clearcoat: 1,
                 });
                 const mesh = new THREE.Mesh(g, m);
-                mesh.position.set(
-                    (Math.random() - 0.5) * 9,
-                    (Math.random() - 0.5) * 6,
-                    (Math.random() - 0.5) * 4 - 1
-                );
+                mesh.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 4 - 1);
                 mesh.userData.speed = 0.002 + Math.random() * 0.004;
                 mesh.userData.phase = Math.random() * Math.PI * 2;
                 scene.add(mesh);
                 shapes.push(mesh);
             }
 
-            // Mouse parallax
             let tx = 0, ty = 0, cx = 0, cy = 0;
             window.addEventListener('mousemove', e => {
                 tx = (e.clientX / window.innerWidth - 0.5);
                 ty = (e.clientY / window.innerHeight - 0.5);
             });
-
-            // Scroll influence
             let scrollT = 0;
-            window.addEventListener('scroll', () => {
-                scrollT = window.scrollY;
-            }, { passive: true });
+            window.addEventListener('scroll', () => { scrollT = window.scrollY; }, { passive: true });
 
             function animate() {
                 requestAnimationFrame(animate);
                 cx += (tx - cx) * 0.04;
                 cy += (ty - cy) * 0.04;
-
-                const st = scrollT * 0.0008;
-
-                knot.rotation.x = st * 0.7 + cy * 0.4;
-                knot.rotation.y = st + cx * 0.8;
-                knot.position.x = cx * 0.8;
-                knot.position.y = -cy * 0.5 - Math.min(st * 0.4, 4);
-                knot.scale.setScalar(1 + Math.sin(st * 2) * 0.05);
-
                 shapes.forEach((s, i) => {
                     s.rotation.x += s.userData.speed;
                     s.rotation.y += s.userData.speed * 1.3;
                     s.position.y += Math.sin(performance.now() * 0.0008 + s.userData.phase) * 0.002;
                     s.position.x += cx * 0.001 * (i % 2 ? 1 : -1);
                 });
-
                 camera.position.x = cx * 0.6;
-                camera.position.y = -cy * 0.4;
+                camera.position.y = -cy * 0.4 - Math.min(scrollT * 0.001, 3);
                 camera.lookAt(0, 0, 0);
-
                 renderer.render(scene, camera);
             }
             animate();
@@ -1323,6 +1485,89 @@
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        /* ===== CHERRY: sweep narrative element ===== */
+        (function cherryFlight() {
+            const cherry = document.getElementById('cherry');
+            const stage = document.getElementById('cherry-stage');
+            if (!cherry || !stage) return;
+
+            // Anchor sections — points the cherry passes through
+            const anchorIds = ['hero', 'problem', 'philosophy', 'stats', 'process', 'cases', 'pricing', 'who', 'faq', 'lead'];
+            const anchors = anchorIds.map(id => document.getElementById(id)).filter(Boolean);
+
+            // Trail
+            const trailCount = 12;
+            const trail = [];
+            for (let i = 0; i < trailCount; i++) {
+                const t = document.createElement('div');
+                t.className = 'cherry-trail';
+                stage.appendChild(t);
+                trail.push({ el: t, x: 0, y: 0, life: 0 });
+            }
+            let trailIdx = 0;
+
+            const pathPattern = [-0.35, 0.4, -0.25, 0.3, -0.4, 0.45, -0.2, 0.35, 0, 0.25];
+
+            let lastX = 0, lastY = 0, vx = 0;
+
+            ScrollTrigger.create({
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true,
+                onUpdate: self => {
+                    const totalScroll = window.scrollY;
+                    const docH = document.documentElement.scrollHeight - window.innerHeight;
+                    const p = totalScroll / Math.max(docH, 1);
+
+                    // Find which anchor we are between
+                    const anchorPositions = anchors.map(a => a.getBoundingClientRect().top + window.scrollY);
+                    const segments = anchorPositions.length - 1;
+                    let seg = 0;
+                    for (let i = 0; i < segments; i++) {
+                        if (totalScroll >= anchorPositions[i] - window.innerHeight / 2 &&
+                            totalScroll < anchorPositions[i + 1] - window.innerHeight / 2) {
+                            seg = i;
+                            break;
+                        }
+                    }
+                    if (totalScroll >= anchorPositions[segments] - window.innerHeight / 2) seg = segments;
+
+                    // Horizontal position: zigzag across blocks
+                    const segP = Math.min(1, Math.max(0, (totalScroll - (anchorPositions[seg] - window.innerHeight / 2)) /
+                        ((anchorPositions[Math.min(seg + 1, segments)] - anchorPositions[seg]) || 1)));
+                    const targetXPct = (pathPattern[seg % pathPattern.length] + (pathPattern[(seg + 1) % pathPattern.length] - pathPattern[seg % pathPattern.length]) * segP);
+                    const xPx = window.innerWidth * (0.5 + targetXPct);
+
+                    // Vertical: cherry sits roughly at viewport center, follows scroll
+                    const yPx = window.innerHeight * (0.15 + Math.sin(totalScroll * 0.003) * 0.1) + Math.min(totalScroll * 0.05, window.innerHeight * 0.6);
+
+                    // Place
+                    cherry.style.transform = `translate(${xPx - 30}px, ${yPx}px)`;
+
+                    // Velocity for size/state
+                    vx = xPx - lastX;
+                    const vy = yPx - lastY;
+                    const speed = Math.sqrt(vx * vx + vy * vy);
+                    cherry.classList.toggle('flying', speed > 1.5);
+
+                    // Trail
+                    if (speed > 0.5) {
+                        const t = trail[trailIdx % trailCount];
+                        t.x = xPx; t.y = yPx + 30;
+                        t.el.style.cssText = `left:${t.x - 3}px;top:${t.y - 3}px;opacity:.9;transform:scale(${1 + Math.random()})`;
+                        trailIdx++;
+                    }
+                    trail.forEach(t => {
+                        const op = parseFloat(t.el.style.opacity || 0);
+                        if (op > 0) t.el.style.opacity = (op * 0.92).toFixed(3);
+                    });
+
+                    lastX = xPx; lastY = yPx;
+                }
             });
         })();
 
@@ -1429,20 +1674,46 @@
         /* ===== Lead form ===== */
         document.getElementById('leadForm').addEventListener('submit', async e => {
             e.preventDefault();
+            const form = e.target;
             const btn = document.getElementById('leadBtn');
+            const originalLabel = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = 'Отправляю…';
-            const data = Object.fromEntries(new FormData(e.target));
+
+            const data = Object.fromEntries(new FormData(form));
+            // include traffic source so I know where leads come from (vk targeting / direct / etc.)
+            data.source = (document.referrer || 'direct').slice(0, 200);
+
+            let ok = false;
             try {
-                await fetch('/api/submit', {
+                const r = await fetch('/api/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
-            } catch (err) { /* тихо */ }
-            e.target.classList.add('hidden');
-            document.getElementById('leadSuccess').classList.remove('hidden');
-            document.getElementById('leadSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                ok = r.ok;
+            } catch (err) {
+                ok = false;
+            }
+
+            if (ok) {
+                form.classList.add('hidden');
+                const success = document.getElementById('leadSuccess');
+                success.classList.remove('hidden');
+                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = originalLabel;
+                let err = document.getElementById('leadError');
+                if (!err) {
+                    err = document.createElement('p');
+                    err.id = 'leadError';
+                    err.className = 'mt-4 text-sm';
+                    err.style.color = 'var(--accent-3)';
+                    btn.parentElement.appendChild(err);
+                }
+                err.innerHTML = 'Не отправилось. Напиши в Telegram <a href="https://t.me/anonosya" style="color:var(--gold);text-decoration:underline">@anonosya</a> — отвечу лично.';
+            }
         });
     </script>
 </body>
